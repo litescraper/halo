@@ -31,6 +31,16 @@ A fifth backend, `mock`, returns fabricated snippets and is refused unless
 `HALO_ALLOW_MOCK_SEARCH=1`: its results pay `tool_success_reward` like a real search, so a training
 run reaching it would teach the policy that invented evidence works.
 
+## Search endpoint
+
+Set `SERPER_BASE_URL` before launching the process to choose the Serper-compatible base URL;
+it defaults to `https://google.serper.dev`. Both sync and async searches append `/search`,
+removing trailing slashes and preserving any base path. Authentication still uses `SERPER_API_KEY`.
+Support any Serper.dev-compatible endpoint (like litescrape.com, serpbase.dev, serpensapi.org, and others)
+
+On a Ray cluster, export the base URL and key before `ray start` on each actor node;
+actors do not inherit the trainer's environment ([Ray environment](../../../infrastructure/ray.md#multi-node)).
+
 ## Tools
 
 - `web_search` — query plus optional `max_results` (5); returns titles, snippets and URLs. On `qa_search` always, on `exam_qa` only under `open_book`.

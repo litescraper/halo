@@ -173,7 +173,7 @@ The toolkit configures no other Ray ports; upstream defaults apply. What must ho
   [Environments](../training-methods/grpo/environments/README.md).
 
 - **Actor processes inherit the `ray start` daemon's environment, not the trainer's.** Export
-  `HALO_SANDBOX_*`, `TMPDIR`, search/MCP keys (`SERPER_API_KEY` / `BRAVE_API_KEY` /
+  `HALO_SANDBOX_*`, `TMPDIR`, `SERPER_BASE_URL`, search/MCP keys (`SERPER_API_KEY` / `BRAVE_API_KEY` /
   `TAVILY_API_KEY`), and any HF/proxy vars *before* `ray start` on each node; nothing forwards the
   trainer's env to remote actors.
 

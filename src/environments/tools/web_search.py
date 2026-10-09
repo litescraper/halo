@@ -78,7 +78,7 @@ async def _async_call(spec: HttpSearchSpec, query: str, max_results: int = 5) ->
 
 _SERPER = HttpSearchSpec(
     method="POST",
-    url="https://google.serper.dev/search",
+    url=f"{env_str('SERPER_BASE_URL', 'https://google.serper.dev').rstrip('/')}/search",
     env_key="SERPER_API_KEY",
     build=lambda query, max_results, key: {
         "json": {"q": query, "num": max_results},
